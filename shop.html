@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин | Артбуки Макото Синкай</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛒</text></svg>">
+</head>
+<body class="shop-page">
+    <!-- Переключатель темы -->
+    <button class="page-theme-toggle" onclick="toggleTheme()" title="Сменить тему">🌙</button>
+
+    <!-- Корзина -->
+    <div class="cart-widget">
+        <div class="cart-bell">
+            <span class="cart-icon">🛒</span>
+            <span class="cart-count" id="cart-count">0</span>
+        </div>
+        <div class="cart-dropdown">
+            <div class="notification-header">
+                <h3>Корзина</h3>
+                <span class="notification-count" id="cart-total">0 ₽</span>
+            </div>
+            <ul class="notification-list cart-list" id="cart-items">
+                <li class="cart-empty">Корзина пуста</li>
+            </ul>
+            <div class="cart-total">Итого: 0 ₽</div>
+            <div class="notification-footer">
+                <button class="checkout-btn" onclick="checkout()">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Шапка магазина -->
+        <header class="shop-header" style="background: url('images/shop-bg.jpg') center/cover;">
+            <nav class="shop-nav">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">← Главная</a>
+                    <a href="gallery.html" class="nav-link">Галерея</a>
+                </div>
+                <a href="login.html" class="btn btn-small btn-gradient-slide">
+                    <span class="btn-text">Войти</span>
+                </a>
+            </nav>
+
+            <div class="page-title-block">
+                <h1>Магазин артбуков</h1>
+            </div>
+        </header>
+
+        <!-- Фильтры -->
+        <div class="shop-filters">
+            <div class="filter-group">
+                <label>Фильм:</label>
+                <select class="shop-select" id="filter-film" onchange="filterProducts()">
+                    <option value="all">Все фильмы</option>
+                    <option value="yourname">Твоё имя</option>
+                    <option value="weathering">Дитя погоды</option>
+                    <option value="suzume">Судзумэ</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Сортировка:</label>
+                <select class="shop-select" id="sort-by" onchange="sortProducts()">
+                    <option value="popular">По популярности</option>
+                    <option value="price-low">Сначала дешевле</option>
+                    <option value="price-high">Сначала дороже</option>
+                    <option value="new">Новинки</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Товары -->
+        <div class="products-grid" id="products-grid">
+            <!-- Товар 1 -->
+            <div class="product-card" data-product-id="artbook-yourname" data-film="yourname" data-price="2490" data-popular="5" data-new="false">
+                <span class="product-badge">Хит</span>
+                <div class="product-image">
+                    <img src="images/shop/artbook-yourname.jpg" alt="Артбук Твоё имя">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Твоё имя</span>
+                    <h3 class="product-title">Официальный артбук «Твоё имя»</h3>
+                    <p class="product-description">Полная коллекция концепт-артов, раскадровок и интервью с создателями.</p>
+                    <div class="product-meta">
+                        <span>📄 256 стр.</span>
+                        <span>🌐 Японский</span>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">2 490 ₽</span>
+                        <button class="add-to-cart">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Товар 2 -->
+            <div class="product-card" data-product-id="artbook-yourname-deluxe" data-film="yourname" data-price="3990" data-popular="4" data-new="false">
+                <div class="product-image">
+                    <img src="images/shop/artbook-yourname-deluxe.jpg" alt="Артбук Твоё имя Deluxe">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Твоё имя</span>
+                    <h3 class="product-title">Артбук «Твоё имя» Deluxe Edition</h3>
+                    <p class="product-description">Расширенное издание с дополнительными материалами и постером.</p>
+                    <div class="product-meta">
+                        <span>📄 320 стр.</span>
+                        <span>🌐 Японский + Англ.</span>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">3 990 ₽</span>
+                        <button class="add-to-cart">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Товар 3 -->
+            <div class="product-card" data-product-id="artbook-weathering" data-film="weathering" data-price="2690" data-popular="4" data-new="false">
+                <div class="product-image">
+                    <img src="images/shop/artbook-weathering.jpg" alt="Артбук Дитя погоды">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Дитя погоды</span>
+                    <h3 class="product-title">Официальный артбук «Дитя погоды»</h3>
+                    <p class="product-description">Иллюстрации небесных пейзажей и дизайн персонажей.</p>
+                    <div class="product-meta">
+                        <span>📄 224 стр.</span>
+                        <span>🌐 Японский</span>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">2 690 ₽</span>
+                        <button class="add-to-cart">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Товар 4 -->
+            <div class="product-card" data-product-id="artbook-weathering-complete" data-film="weathering" data-price="4490" data-popular="3" data-new="false">
+                <div class="product-image">
+                    <img src="images/shop/artbook-weathering-complete.jpg" alt="Полное собрание Дитя погоды">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Дитя погоды</span>
+                    <h3 class="product-title">Complete Works «Дитя погоды»</h3>
+                    <p class="product-description">Полное собрание работ с комментариями режиссёра.</p>
+                    <div class="product-meta">
+                        <span>📄 400 стр.</span>
+                        <span>🌐 Японский</span>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">4 490 ₽</span>
+                        <button class="add-to-cart">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Товар 5 -->
+            <div class="product-card" data-product-id="artbook-suzume" data-film="suzume" data-price="2890" data-popular="5" data-new="true">
+                <span class="product-badge new">Новинка</span>
+                <div class="product-image">
+                    <img src="images/shop/artbook-suzume.jpg" alt="Артбук Судзумэ">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Судзумэ</span>
+                    <h3 class="product-title">Официальный артбук «Судзумэ»</h3>
+                    <p class="product-description">Путешествие по всей Японии в иллюстрациях и концепт-артах.</p>
+                    <div class="product-meta">
+                        <span>📄 280 стр.</span>
+                        <span>🌐 Японский</span>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">2 890 ₽</span>
+                        <button class="add-to-cart">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Товар 6 -->
+            <div class="product-card" data-product-id="artbook-suzume-collectors" data-film="suzume" data-price="5990" data-popular="4" data-new="true">
+                <span class="product-badge new">Новинка</span>
+                <div class="product-image">
+                    <img src="images/shop/artbook-suzume-collectors.jpg" alt="Коллекционное издание Судзумэ">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Судзумэ</span>
+                    <h3 class="product-title">Collector's Edition «Судзумэ»</h3>
+                    <p class="product-description">Коллекционное издание с постерами, стикерами и артпринтами.</p>
+                    <div class="product-meta">
+                        <span>📄 350 стр.</span>
+                        <span>🎁 + Бонусы</span>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">5 990 ₽</span>
+                        <button class="add-to-cart">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Товар 7 -->
+            <div class="product-card" data-product-id="artbook-trilogy" data-film="all" data-price="7990" data-popular="5" data-new="false">
+                <span class="product-badge">Хит</span>
+                <div class="product-image">
+                    <img src="images/shop/artbook-trilogy.jpg" alt="Сборник трилогии">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Трилогия</span>
+                    <h3 class="product-title">Сборник «Трилогия Синкай»</h3>
+                    <p class="product-description">Три артбука в одном подарочном боксе со скидкой.</p>
+                    <div class="product-meta">
+                        <span>📄 3 книги</span>
+                        <span>🎁 Бокс</span>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">7 990 ₽</span>
+                        <button class="add-to-cart">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Товар 8 -->
+            <div class="product-card" data-product-id="poster-set" data-film="all" data-price="1290" data-popular="3" data-new="false">
+                <div class="product-image">
+                    <img src="images/shop/poster-set.jpg" alt="Набор постеров">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Постеры</span>
+                    <h3 class="product-title">Набор постеров (3 шт.)</h3>
+                    <p class="product-description">Три высококачественных постера формата A3 с ключевыми сценами.</p>
+                    <div class="product-meta">
+                        <span>📐 A3</span>
+                        <span>🖼️ 3 постера</span>
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">1 290 ₽</span>
+                        <button class="add-to-cart">В корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Информация о доставке -->
+        <section class="shop-info">
+            <h2 class="section-title">Информация о заказе</h2>
+            <div class="info-cards">
+                <div class="info-card">
+                    <span class="info-icon">🚚</span>
+                    <h4>Доставка</h4>
+                    <p>По России от 3 дней. Бесплатно от 3000 ₽</p>
+                </div>
+                <div class="info-card">
+                    <span class="info-icon">💳</span>
+                    <h4>Оплата</h4>
+                    <p>Карты, СБП, наложенный платёж</p>
+                </div>
+                <div class="info-card">
+                    <span class="info-icon">🔄</span>
+                    <h4>Возврат</h4>
+                    <p>14 дней на возврат без объяснения причин</p>
+                </div>
+                <div class="info-card">
+                    <span class="info-icon">📦</span>
+                    <h4>Упаковка</h4>
+                    <p>Надёжная упаковка для сохранности книг</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <!-- О проекте -->
+                    <div class="footer-section">
+                        <h3>О проекте</h3>
+                        <p>
+                            Неофициальный фанатский сайт, посвящённый творчеству великого режиссёра 
+                            Макото Синкая. <br> Галереи, новости, артбуки и многое другое.
+                        </p>
+                    </div>
+
+                    <!-- Навигация -->
+                    <div class="footer-section">
+                        <h3>Навигация</h3>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Главная страница</a></li>
+                            <li><a href="gallery.html">Галерея работ</a></li>
+                            <li><div>Магазин артбуков</div></li>
+                            <li><a href="login.html">Личный кабинет</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Информация -->
+                    <div class="footer-section">
+                        <h3>Информация</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">О режиссёре</a></li>
+                            <li><a href="#">Новости и обновления</a></li>
+                            <li><a href="#">Правила сообщества</a></li>
+                            <li><a href="#">Контакты</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Социальные сети -->
+                    <div class="footer-section">
+                        <h3>Мы в соцсетях</h3>
+                        <div class="footer-social">
+                            <a href="https://vk.com/lulus1k" title="VK">💬</a>
+                            <a href="https://t.me/lulusikkk" title="Telegram">✈️</a>
+                        </div>
+                        <p style="margin-top: 15px;">
+                            Подпишитесь на наши соцсети, чтобы не пропустить новости о релизах, 
+                            скидках и эксклюзивных материалах!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p class="footer-copy">© 2025 Мир Макото Синкая. Неофициальный фан-сайт.</p>
+                    <p class="footer-disclaimer">
+                        Все права на изображения и материалы принадлежат их законным владельцам. 
+                        Сайт создан исключительно в образовательных и некоммерческих целях.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Тема
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                const themeToggle = document.querySelector('.page-theme-toggle');
+                if (themeToggle) themeToggle.textContent = '☀️';
+            }
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            const themeToggle = document.querySelector('.page-theme-toggle');
+            if (themeToggle) themeToggle.textContent = isDark ? '☀️' : '🌙';
+        }
+
+        // ========== КОРЗИНА С КОЛИЧЕСТВОМ ==========
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+        function initCart() {
+            updateCartUI();
+
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productCard = this.closest('.product-card');
+                    const productId = productCard.dataset.productId;
+                    const productName = productCard.querySelector('.product-title').textContent;
+                    const productPrice = parseFloat(productCard.querySelector('.product-price').textContent.replace(/[^0-9.]/g, ''));
+
+                    addToCart(productId, productName, productPrice);
+
+                    this.textContent = '✓ Добавлено';
+                    this.style.background = '#28a745';
+                    setTimeout(() => {
+                        this.textContent = '🛒 В корзину';
+                        this.style.background = '';
+                    }, 1500);
+                });
+            });
+        }
+
+        function addToCart(id, name, price) {
+            if (cart[id]) {
+                cart[id].quantity += 1;
+            } else {
+                cart[id] = { name, price, quantity: 1 };
+            }
+            saveCart();
+            updateCartUI();
+            showNotification(name + ' добавлен в корзину!');
+        }
+
+        function updateQuantity(id, delta) {
+            if (cart[id]) {
+                cart[id].quantity += delta;
+                if (cart[id].quantity <= 0) {
+                    delete cart[id];
+                }
+                saveCart();
+                updateCartUI();
+            }
+        }
+
+        function removeFromCart(id) {
+            if (cart[id]) {
+                const name = cart[id].name;
+                delete cart[id];
+                saveCart();
+                updateCartUI();
+                showNotification(name + ' удалён из корзины');
+            }
+        }
+
+        function clearCart() {
+            cart = {};
+            saveCart();
+            updateCartUI();
+            showNotification('Корзина очищена');
+        }
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const cartCount = document.querySelector('.cart-count');
+            const cartList = document.querySelector('.cart-list');
+            const cartEmpty = document.querySelector('.cart-empty');
+            const checkoutBtn = document.querySelector('.checkout-btn');
+            const cartTotal = document.querySelector('.cart-total');
+
+            const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            if (cartCount) {
+                cartCount.textContent = totalItems;
+                cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+            }
+
+            if (cartList) {
+                if (totalItems === 0) {
+                    cartList.style.display = 'none';
+                    if (cartEmpty) cartEmpty.style.display = 'block';
+                    if (checkoutBtn) checkoutBtn.disabled = true;
+                } else {
+                    cartList.style.display = 'block';
+                    if (cartEmpty) cartEmpty.style.display = 'none';
+                    if (checkoutBtn) checkoutBtn.disabled = false;
+
+                    cartList.innerHTML = Object.entries(cart).map(([id, item]) => `
+                        <li class="cart-item" data-product-id="${id}">
+                            <div class="cart-item-content">
+                                <div class="notification-content">
+                                    <p class="notification-title">${item.name}</p>
+                                    <p class="notification-time">
+                                        ${item.price.toFixed(0)} ₽ × ${item.quantity} = ${(item.price * item.quantity).toFixed(0)} ₽
+                                    </p>
+                                </div>
+                                <div class="cart-item-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity('${id}', -1)" title="Уменьшить">−</button>
+                                    <span class="quantity-display">${item.quantity}</span>
+                                    <button class="quantity-btn" onclick="updateQuantity('${id}', 1)" title="Увеличить">+</button>
+                                    <button class="remove-item" onclick="removeFromCart('${id}')" title="Удалить">✕</button>
+                                </div>
+                            </div>
+                        </li>
+                    `).join('');
+                }
+            }
+
+            if (cartTotal) {
+                cartTotal.textContent = 'Итого: ' + totalPrice.toFixed(0) + ' ₽';
+            }
+        }
+
+        function showNotification(message) {
+            let notification = document.querySelector('.toast-notification');
+
+            if (!notification) {
+                notification = document.createElement('div');
+                notification.className = 'toast-notification';
+                document.body.appendChild(notification);
+            }
+
+            notification.textContent = message;
+            notification.classList.add('show');
+
+            setTimeout(() => notification.classList.remove('show'), 3000);
+        }
+
+        function checkout() {
+            const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            if (totalItems === 0) {
+                alert('Корзина пуста!');
+                return;
+            }
+
+            const orderDetails = Object.entries(cart).map(([id, item]) => 
+                item.name + ' × ' + item.quantity + ' = ' + (item.price * item.quantity).toFixed(0) + ' ₽'
+            ).join('\n');
+
+            const confirmed = confirm('Оформить заказ?\n\n' + orderDetails + '\n\nИтого: ' + totalPrice.toFixed(0) + ' ₽ (' + totalItems + ' шт.)');
+
+            if (confirmed) {
+                alert('Спасибо за заказ! Мы свяжемся с вами в ближайшее время.');
+                clearCart();
+                toggleCart();
+            }
+        }
+
+        function toggleCart() {
+            const cartDropdown = document.querySelector('.cart-dropdown');
+            if (cartDropdown) {
+                cartDropdown.classList.toggle('active');
+            }
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            initTheme();
+            initCart();
+
+            // Закрытие корзины при клике вне её
+            document.addEventListener('click', function(e) {
+                const cartDropdown = document.querySelector('.cart-dropdown');
+                const cartIcon = document.querySelector('.cart-icon');
+
+                if (cartDropdown && cartDropdown.classList.contains('active') && 
+                    !cartDropdown.contains(e.target) && 
+                    (!cartIcon || !cartIcon.contains(e.target))) {
+                    cartDropdown.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

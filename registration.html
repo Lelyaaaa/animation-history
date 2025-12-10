@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация | Мир Макото Синкай</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌠</text></svg>">
+</head>
+<body class="auth-page">
+    <!-- Переключатель темы -->
+    <button class="page-theme-toggle" onclick="toggleTheme()" title="Сменить тему">🌙</button>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <span class="logo-icon">🌠</span>
+                <a href="index.html" class="auth-logo">
+                    <span>Мир Синкай</span>
+                </a>
+            </div>
+
+            <form class="auth-form" action="#" method="post">
+                <div class="form-row-double">
+                    <div class="form-group">
+                        <label for="firstName">Имя</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Ваше имя" required style="padding-left: 14px;">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Фамилия</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Ваша фамилия" style="padding-left: 14px;">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">📧</span>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="password" name="password" placeholder="Минимум 8 символов" required minlength="8">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Подтвердите пароль</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Повторите пароль" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="favFilm">Любимый фильм трилогии</label>
+                    <select id="favFilm" name="favFilm" style="padding-left: 14px;">
+                        <option value="">Выберите фильм</option>
+                        <option value="yourname">Твоё имя (2016)</option>
+                        <option value="weathering">Дитя погоды (2019)</option>
+                        <option value="suzume">Судзумэ, закрывающая двери (2022)</option>
+                    </select>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="newsletter">
+                        Получать новости о релизах и скидках
+                    </label>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="terms" required>
+                        Принимаю <a href="#">условия использования</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-gradient-slide btn-full">
+                    <span class="btn-text">Зарегистрироваться</span>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Уже есть аккаунт? <a href="login.html">Войти</a></p>
+            </div>
+        </div>
+
+        <div class="auth-image auth-image-register" style="background: url('images/register-bg.jpg') center/cover;">
+            <div class="auth-image-overlay">
+                <blockquote>
+                    "Даже если весь мир изменится, я выберу тебя"
+                </blockquote>
+                <cite>— Дитя погоды (2019)</cite>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                document.querySelector('.page-theme-toggle').textContent = '☀️';
+            }
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            document.querySelector('.page-theme-toggle').textContent = isDark ? '☀️' : '🌙';
+        }
+
+        initTheme();
+    </script>
+</body>
+</html>

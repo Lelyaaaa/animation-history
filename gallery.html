@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея | Трилогия Макото Синкай</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖼️</text></svg>">
+
+<style>
+/* ✅ КАРУСЕЛЬ - ВСТРОЕННЫЕ СТИЛИ */
+.carousel-container { max-width: 1200px; margin: 0 auto 50px; padding: 0 20px; }
+.carousel { position: relative; max-width: 100%; margin: 30px auto; background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 15px 50px var(--shadow-color); border: 3px solid var(--border-color); }
+.carousel-track { display: flex; height: 450px; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; }
+.carousel-slide { min-width: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.95); backdrop-filter: blur(15px); border: 2px solid var(--border-color); width: 65px; height: 65px; border-radius: 50%; font-size: 2rem; font-weight: bold; color: var(--primary-color); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 6px 25px var(--shadow-color); z-index: 20; }
+.carousel-btn:hover { background: #fff; transform: translateY(-50%) scale(1.15); color: var(--accent-color); box-shadow: 0 10px 35px var(--shadow-color); }
+.carousel-prev { left: 25px; } .carousel-next { right: 25px; }
+.carousel-dots { display: flex; justify-content: center; gap: 12px; padding: 25px; background: rgba(0,0,0,0.4); backdrop-filter: blur(15px); }
+.carousel-dot { width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,0.5); border: 2px solid rgba(255,255,255,0.7); cursor: pointer; transition: all 0.4s ease; }
+.carousel-dot.active, .carousel-dot:hover { background: var(--accent-color); transform: scale(1.4); box-shadow: 0 0 15px var(--accent-color); }
+@media (max-width: 768px) { .carousel-track { height: 320px; } .carousel-btn { width: 55px; height: 55px; font-size: 1.6rem; } .carousel-prev { left: 15px; } .carousel-next { right: 15px; } }
+@media (max-width: 480px) { .carousel-track { height: 280px; } .carousel-btn { width: 50px; height: 50px; font-size: 1.4rem; } }
+</style></head>
+<body class="gallery-page">
+    <!-- Переключатель темы -->
+    <button class="page-theme-toggle" onclick="toggleTheme()" title="Сменить тему">🌙</button>
+
+    <div class="container">
+        <!-- Шапка галереи -->
+        <header class="gallery-header" style="background: url('images/gallery-bg.jpg') center/cover;">
+            <nav class="gallery-nav">
+                <div class="nav-links">
+                    <a href="index4.html" class="nav-link">← Главная</a>
+                    <a href="shop.html" class="nav-link">Магазин</a>
+                </div>
+                <a href="login.html" class="btn btn-small btn-gradient-slide">
+                    <span class="btn-text">Войти</span>
+                </a>
+            </nav>
+
+            <h1>Галерея трилогии</h1>
+
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="yourname">Твоё имя</button>
+                <button class="filter-btn" data-filter="weathering">Дитя погоды</button>
+                <button class="filter-btn" data-filter="suzume">Судзумэ</button>
+            </div>
+        </header>
+
+        <!-- Секция: Твоё имя -->
+        <section class="gallery-section" id="yourname">
+            <h2 class="section-title">Твоё имя (2016)</h2>
+            <p class="section-description">Высококачественные арты из фильма</p>
+
+            <div class="carousel-container">
+                <div class="carousel" id="carousel-1">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="images/yourname/yn-01.jpg" alt="Твоё имя (2016) 1" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/yourname/yn-02.jpg" alt="Твоё имя (2016) 2" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/yourname/yn-03.jpg" alt="Твоё имя (2016) 3" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/yourname/yn-04.jpg" alt="Твоё имя (2016) 4" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/yourname/yn-05.jpg" alt="Твоё имя (2016) 5" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/yourname/yn-06.jpg" alt="Твоё имя (2016) 6" loading="lazy"></div>
+
+                    </div>
+                    <button class="carousel-btn carousel-prev" onclick="moveCarousel(1, -1)">❮</button>
+                    <button class="carousel-btn carousel-next" onclick="moveCarousel(1, 1)">❯</button>
+                    <div class="carousel-dots" id="dots-1"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция: Дитя погоды -->
+        <section class="gallery-section" id="weathering">
+            <h2 class="section-title">Дитя погоды (2019)</h2>
+            <p class="section-description">Высококачественные арты из фильма</p>
+
+            <div class="carousel-container">
+                <div class="carousel" id="carousel-2">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="images/weathering/ww-01.jpg" alt="Дитя погоды (2019) 1" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/weathering/ww-02.jpg" alt="Дитя погоды (2019) 2" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/weathering/ww-03.jpg" alt="Дитя погоды (2019) 3" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/weathering/ww-04.jpg" alt="Дитя погоды (2019) 4" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/weathering/ww-05.jpg" alt="Дитя погоды (2019) 5" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/weathering/ww-06.jpg" alt="Дитя погоды (2019) 6" loading="lazy"></div>
+
+                    </div>
+                    <button class="carousel-btn carousel-prev" onclick="moveCarousel(2, -1)">❮</button>
+                    <button class="carousel-btn carousel-next" onclick="moveCarousel(2, 1)">❯</button>
+                    <div class="carousel-dots" id="dots-2"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция: Судзумэ -->
+        <section class="gallery-section" id="suzume">
+            <h2 class="section-title">Судзумэ (2022)</h2>
+            <p class="section-description">Высококачественные арты из фильма</p>
+
+            <div class="carousel-container">
+                <div class="carousel" id="carousel-3">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="images/suzume/sz-01.jpg" alt="Судзумэ (2022) 1" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/suzume/sz-02.jpg" alt="Судзумэ (2022) 2" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/suzume/sz-03.jpg" alt="Судзумэ (2022) 3" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/suzume/sz-04.jpg" alt="Судзумэ (2022) 4" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/suzume/sz-05.jpg" alt="Судзумэ (2022) 5" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/suzume/sz-06.jpg" alt="Судзумэ (2022) 6" loading="lazy"></div>
+
+                    </div>
+                    <button class="carousel-btn carousel-prev" onclick="moveCarousel(3, -1)">❮</button>
+                    <button class="carousel-btn carousel-next" onclick="moveCarousel(3, 1)">❯</button>
+                    <div class="carousel-dots" id="dots-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="gallery-cta">
+            <div class="cta-box">
+                <h3>Хотите артбуки с этими кадрами?</h3>
+                <p>В нашем магазине доступны официальные артбуки по всем фильмам трилогии</p>
+                <a href="shop.html" class="btn btn-gradient-slide">
+                    <span class="btn-text">Перейти в магазин</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <!-- О проекте -->
+                    <div class="footer-section">
+                        <h3>О проекте</h3>
+                        <p>
+                            Неофициальный фан-сайт, посвящённый творчеству великого режиссёра 
+                            Макото Синкая. Галереи, новости, артбуки и многое другое.
+                        </p>
+                    </div>
+
+                    <!-- Навигация -->
+                    <div class="footer-section">
+                        <h3>Навигация</h3>
+                        <ul class="footer-links">
+                            <li><a href="index4.html">Главная страница</a></li>
+                            <li><div>Галерея работ</div></li>
+                            <li><a href="shop.html">Магазин артбуков</a></li>
+                            <li><a href="login.html">Личный кабинет</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Информация -->
+                    <div class="footer-section">
+                        <h3>Информация</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">О режиссёре</a></li>
+                            <li><a href="#">Новости и обновления</a></li>
+                            <li><a href="#">Правила сообщества</a></li>
+                            <li><a href="#">Контакты</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Социальные сети -->
+                    <div class="footer-section">
+                        <h3>Мы в соцсетях</h3>
+                        <div class="footer-social">
+                            <a href="https://vk.com/lulus1k" title="VK">💬</a>
+                            <a href="https://t.me/lulusikkk" title="Telegram">✈️</a>
+                        </div>
+                        <p style="margin-top: 15px;">
+                            Подпишитесь на наши соцсети, чтобы не пропустить новости о релизах, 
+                            скидках и эксклюзивных материалах!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p class="footer-copy">© 2025 Мир Макото Синкая. Неофициальный фан-сайт.</p>
+                    <p class="footer-disclaimer">
+                        Все права на изображения и материалы принадлежат их законным владельцам. 
+                        Сайт создан исключительно в образовательных и некоммерческих целях.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Лайтбокс -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <img src="" alt="" class="lightbox-image" id="lightbox-img">
+        <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+
+    <script>
+        // Инициализация темы
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                document.querySelector('.page-theme-toggle').textContent = '☀️';
+            }
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            document.querySelector('.page-theme-toggle').textContent = isDark ? '☀️' : '🌙';
+        }
+
+        // Фильтрация
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('.gallery-section').forEach(section => {
+                    if (filter === 'all') {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = section.id === filter ? 'block' : 'none';
+                    }
+                });
+            });
+        });
+
+        // Лайтбокс
+        function openLightbox(btn) {
+            const item = btn.closest('.gallery-item');
+            const img = item.querySelector('img');
+            const title = item.querySelector('.gallery-title').textContent;
+
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox-caption').textContent = title;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        initTheme();
+    </script>
+
+<script>
+let currentSlide = [0, 0, 0];
+let autoPlay = [null, null, null];
+
+function initCarousels() {
+    for(let i = 1; i <= 3; i++) {
+        createDots(i);
+        updateCarousel(i);
+        startAutoPlay(i);
+    }
+}
+
+function createDots(carouselNum) {
+    const dotsContainer = document.getElementById('dots-' + carouselNum);
+    dotsContainer.innerHTML = '';
+    for(let i = 0; i < 6; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot';
+        dot.onclick = () => goToSlide(carouselNum, i);
+        dotsContainer.appendChild(dot);
+    }
+}
+
+function moveCarousel(id, direction) {
+    stopAutoPlay(id);
+    currentSlide[id-1] = (currentSlide[id-1] + direction + 6) % 6;
+    updateCarousel(id);
+    startAutoPlay(id);
+}
+
+function goToSlide(carouselNum, slideNum) {
+    stopAutoPlay(carouselNum);
+    currentSlide[carouselNum-1] = slideNum;
+    updateCarousel(carouselNum);
+    startAutoPlay(carouselNum);
+}
+
+function updateCarousel(carouselNum) {
+    const track = document.querySelector('#carousel-' + carouselNum + ' .carousel-track');
+    const dots = document.querySelectorAll('#dots-' + carouselNum + ' .carousel-dot');
+    track.style.transform = `translateX(-${currentSlide[carouselNum-1] * 100}%)`;
+    dots.forEach((dot, index) => dot.classList.toggle('active', index === currentSlide[carouselNum-1]));
+}
+
+function startAutoPlay(carouselNum) {
+    autoPlay[carouselNum-1] = setInterval(() => moveCarousel(carouselNum, 1), 5000);
+}
+
+function stopAutoPlay(carouselNum) {
+    if(autoPlay[carouselNum-1]) clearInterval(autoPlay[carouselNum-1]);
+}
+
+document.addEventListener('DOMContentLoaded', initCarousels);
+</script></body>
+</html>
