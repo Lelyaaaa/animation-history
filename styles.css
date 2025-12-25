@@ -1,4 +1,3 @@
-/* styles4.css - Обновлённая версия */
 :root {
     --primary-color: #9c2c6d;
     --secondary-color: #7a2257;
@@ -3181,9 +3180,10 @@ input[type="submit"]:hover,
     }
 
     .film-year-badge {
-        position: absolute;
-        top: 15px;
-        right: 15px;
+        position: static;
+        font-size: 1.4rem;
+        padding: 8px 12px;
+        margin-bottom: 10px;
         font-size: 1.4rem;
         padding: 8px 12px;
     }
@@ -3239,7 +3239,7 @@ input[type="submit"]:hover,
     }
 
     .cart-widget {
-        right: 70px;
+        right: 110px;
     }
 
     .notification-widget {
@@ -3340,6 +3340,14 @@ input[type="submit"]:hover,
 
     .cta-section h2 {
         font-size: 1.5rem;
+    }
+    .cart-widget {
+        right: 15px;
+        top: 80px;
+    }
+
+    .notification-widget {
+        top: 150px;
     }
 }
 
