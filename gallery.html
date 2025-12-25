@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Галерея | Трилогия Макото Синкай</title>
+    <title>Галерея | Трилогия Макото Синкая</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖼️</text></svg>">
 
@@ -32,7 +32,7 @@
         <header class="gallery-header" style="background: url('images/gallery-bg.jpg') center/cover;">
             <nav class="gallery-nav">
                 <div class="nav-links">
-                    <a href="index.html" class="nav-link">← Главная</a>
+                    <a href="index4.html" class="nav-link">← Главная</a>
                     <a href="shop.html" class="nav-link">Магазин</a>
                 </div>
                 <a href="login.html" class="btn btn-small btn-gradient-slide">
@@ -298,10 +298,15 @@ function goToSlide(carouselNum, slideNum) {
 
 function updateCarousel(carouselNum) {
     const track = document.querySelector('#carousel-' + carouselNum + ' .carousel-track');
+    const slides = track.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('#dots-' + carouselNum + ' .carousel-dot');
-    track.style.transform = `translateX(-${currentSlide[carouselNum-1] * 100}%)`;
+
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    track.style.transform = `translateX(-${currentSlide[carouselNum-1] * slideWidth}px)`;
+
     dots.forEach((dot, index) => dot.classList.toggle('active', index === currentSlide[carouselNum-1]));
 }
+
 
 function startAutoPlay(carouselNum) {
     autoPlay[carouselNum-1] = setInterval(() => moveCarousel(carouselNum, 1), 5000);
@@ -312,5 +317,11 @@ function stopAutoPlay(carouselNum) {
 }
 
 document.addEventListener('DOMContentLoaded', initCarousels);
+
+window.addEventListener('resize', () => {
+    for(let i = 1; i <= 3; i++) {
+        updateCarousel(i);
+    }
+});
 </script></body>
 </html>
