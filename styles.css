@@ -16,7 +16,7 @@
     --overlay-bg: rgba(156, 44, 109, 0.95);
     --btn-text: #fff;
     --transition-time: 0.4s;
-    --sidebar-width: 90px; /* Увеличена ширина сайдбара */
+    --sidebar-width: 90px;
 }
 
 .dark-theme {
@@ -3269,6 +3269,11 @@ input[type="submit"]:hover,
         min-width: 180px;
         padding: 1rem 2.2rem;
     }
+    .carousel-track { height: 250px; }
+    .carousel-btn { width: 50px; height: 50px; font-size: 1.4rem; }
+    .carousel-prev { left: 10px; }
+    .carousel-next { right: 10px; }
+    .carousel-slide img { object-fit: contain; background: var(--card-bg); }
 }
 
 @media (max-width: 480px) {
@@ -3367,6 +3372,13 @@ input[type="submit"]:hover,
         width: 90vw;
         right: -10px;
     }
+    .carousel-track { height: 200px; }
+    .carousel-btn { width: 45px; height: 45px; font-size: 1.2rem; }
+    .carousel-prev { left: 5px; }
+    .carousel-next { right: 5px; }
+    .carousel-slide img { object-fit: contain; padding: 10px; }
+    .carousel-dots { padding: 15px; gap: 8px; }
+    .carousel-dot { width: 10px; height: 10px; }
 }
 
 @media (min-width: 1800px) {
@@ -3493,22 +3505,4 @@ input[type="submit"]:hover,
 
 @media (max-width: 1024px) {
     .carousel-track { height: 400px; }
-}
-
-@media (max-width: 768px) {
-    .carousel-track { height: 250px; }
-    .carousel-btn { width: 50px; height: 50px; font-size: 1.4rem; }
-    .carousel-prev { left: 10px; }
-    .carousel-next { right: 10px; }
-    .carousel-slide img { object-fit: contain; background: var(--card-bg); }
-}
-
-@media (max-width: 480px) {
-    .carousel-track { height: 200px; }
-    .carousel-btn { width: 45px; height: 45px; font-size: 1.2rem; }
-    .carousel-prev { left: 5px; }
-    .carousel-next { right: 5px; }
-    .carousel-slide img { object-fit: contain; padding: 10px; }
-    .carousel-dots { padding: 15px; gap: 8px; }
-    .carousel-dot { width: 10px; height: 10px; }
 }
